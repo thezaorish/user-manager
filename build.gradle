@@ -1,0 +1,41 @@
+group 'com.zaorish'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    def swaggerVersion = '2.4.0'
+    def restAssuredVersion = '2.9.0'
+
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-amqp'
+    compile 'org.springframework.boot:spring-boot-starter-hateoas'
+    compile 'org.springframework.boot:spring-boot-starter-actuator:1.2.3.RELEASE'
+    compile "io.springfox:springfox-swagger2:$swaggerVersion"
+    compile "io.springfox:springfox-swagger-ui:$swaggerVersion"
+
+    testCompile 'org.springframework:spring-test'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile "com.jayway.restassured:rest-assured:$restAssuredVersion"
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.5'
+    testCompile 'com.jayway.jsonpath:json-path'
+    testCompile "com.jayway.restassured:json-schema-validator:$restAssuredVersion"
+}
