@@ -48,4 +48,30 @@ public class InMemoryUserDaoTest {
 		assertThat(users.get(1).getNickname(), is("user_6"));
 	}
 
+	@Test
+	public void shouldGetPaginatedWhenNoUsersInDatabase() {
+		// given
+
+		// when
+		List<User> users = userDao.get(new FilterCriteria(), 4, 6);
+
+		// then
+		assertThat(users.size(), is(0));
+	}
+
+	@Test
+	public void shouldGetPaginatedWhenNotEnoughUsersInDatabase() {
+		// given
+		for (int i = 1; i <= 5; i++) {
+			userDao.create(new User("user_" + i, "password", "email_" + i + "@email.com"));
+		}
+
+		// when
+		List<User> users = userDao.get(new FilterCriteria(), 4, 6);
+
+		// then
+		assertThat(users.size(), is(1));
+		assertThat(users.get(0).getNickname(), is("user_5"));
+	}
+
 }

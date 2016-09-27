@@ -17,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,7 +58,7 @@ public class UserControllerTest {
 		List<UserResource> resources = new ArrayList<>();
 		given(userDataTransformer.transformIntoUserResource(users)).willReturn(resources);
 
-		given(linkHeaderDecorator.decorateLinkHeader(uriBuilder, pagination)).willReturn("value");
+		given(linkHeaderDecorator.decorateLinkHeader(uriBuilder, pagination, "users")).willReturn("value");
 
 		// when
 		ResponseEntity<PagedResponse<UserResource>> result = userController.findPaginated(criteria, pagination, uriBuilder);

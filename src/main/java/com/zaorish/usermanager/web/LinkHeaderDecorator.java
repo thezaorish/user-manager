@@ -15,7 +15,9 @@ public class LinkHeaderDecorator {
 	private static final String REL_FIRST = "first";
 	private static final String REL_LAST = "last";
 
-	public String decorateLinkHeader(UriComponentsBuilder uriBuilder, PaginationInformation pagination) {
+	public String decorateLinkHeader(UriComponentsBuilder uriBuilder, PaginationInformation pagination, String path) {
+		decorateUrlPath(uriBuilder, path);
+
 		StringBuilder linkHeader = new StringBuilder();
 		if (pagination.hasNextPage()) {
 			String uriForNextPage = constructNextPageUri(uriBuilder, pagination);
@@ -38,6 +40,10 @@ public class LinkHeaderDecorator {
 		}
 
 		return linkHeader.toString();
+	}
+
+	private void decorateUrlPath(UriComponentsBuilder uriBuilder, String urlSuffix) {
+		uriBuilder.path("/" + urlSuffix);
 	}
 
 	private String constructNextPageUri(UriComponentsBuilder uriBuilder, PaginationInformation pagination) {

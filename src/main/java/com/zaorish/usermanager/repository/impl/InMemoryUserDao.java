@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.*;
 
+import static java.lang.Math.min;
 import static java.util.stream.Collectors.toList;
 
 @Component
@@ -33,7 +34,8 @@ public class InMemoryUserDao implements UserDao {
 
 	@Override
 	public List<User> get(FilterCriteria criteria, int fromIndex, int toIndex) {
-		return filtered(criteria).subList(fromIndex, toIndex);
+		List<User> filtered = filtered(criteria);
+		return filtered.subList(min(fromIndex, filtered.size()), min(filtered.size(), toIndex));
 	}
 
 	private List<User> filtered(FilterCriteria criteria) {

@@ -80,7 +80,7 @@ public class UserController {
 	}
 	private HttpHeaders configureLocationHeader(PaginationInformation paginationInformation, UriComponentsBuilder uriBuilder) {
 		final HttpHeaders headers = new HttpHeaders();
-		headers.add("Link", linkHeaderDecorator.decorateLinkHeader(uriBuilder, paginationInformation));
+		headers.add("Link", linkHeaderDecorator.decorateLinkHeader(uriBuilder, paginationInformation, "users"));
 		return headers;
 	}
 

@@ -12,7 +12,7 @@ public interface UserDao {
 
 	Optional<User> get(String nickname);
 
-	List<User> get(FilterCriteria criteria, int page, int size);
+	List<User> get(FilterCriteria criteria, int fromIndex, int toIndex);
 
 	int count(FilterCriteria filterCriteria);
 

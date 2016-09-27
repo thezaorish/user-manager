@@ -18,7 +18,7 @@ public class LinkHeaderDecoratorTest {
 	public void setUp() {
 		linkHeaderDecorator = new LinkHeaderDecorator();
 		uriBuilder = UriComponentsBuilder.newInstance();
-		uriBuilder.replacePath("/some/url");
+		uriBuilder.replacePath("");
 	}
 
 	@Test
@@ -27,10 +27,10 @@ public class LinkHeaderDecoratorTest {
 		PaginationInformation pagination = new PaginationInformation(2, 3).withTotalCount(10);
 
 		// when
-		String result = linkHeaderDecorator.decorateLinkHeader(uriBuilder, pagination);
+		String result = linkHeaderDecorator.decorateLinkHeader(uriBuilder, pagination, "resources");
 
 		// then
-		assertThat(result, is("</some/url?page=3&size=3>; rel=\"next\", </some/url?page=4&size=3>; rel=\"last\", </some/url?page=1&size=3>; rel=\"first\", </some/url?page=1&size=3>; rel=\"prev\""));
+		assertThat(result, is("</resources?page=3&size=3>; rel=\"next\", </resources?page=4&size=3>; rel=\"last\", </resources?page=1&size=3>; rel=\"first\", </resources?page=1&size=3>; rel=\"prev\""));
 	}
 	@Test
 	public void shouldDecorateLinkHeaderWhenFirstPageOfResourcesIsRetrieved() {
@@ -38,10 +38,10 @@ public class LinkHeaderDecoratorTest {
 		PaginationInformation pagination = new PaginationInformation(1, 4).withTotalCount(10);
 
 		// when
-		String result = linkHeaderDecorator.decorateLinkHeader(uriBuilder, pagination);
+		String result = linkHeaderDecorator.decorateLinkHeader(uriBuilder, pagination, "resources");
 
 		// then
-		assertThat(result, is("</some/url?page=2&size=4>; rel=\"next\", </some/url?page=3&size=4>; rel=\"last\", </some/url?page=1&size=4>; rel=\"first\""));
+		assertThat(result, is("</resources?page=2&size=4>; rel=\"next\", </resources?page=3&size=4>; rel=\"last\", </resources?page=1&size=4>; rel=\"first\""));
 	}
 	@Test
 	public void shouldDecorateLinkHeaderWhenLastPageOfResourcesIsRetrieved() {
@@ -49,10 +49,10 @@ public class LinkHeaderDecoratorTest {
 		PaginationInformation pagination = new PaginationInformation(2, 5).withTotalCount(8);
 
 		// when
-		String result = linkHeaderDecorator.decorateLinkHeader(uriBuilder, pagination);
+		String result = linkHeaderDecorator.decorateLinkHeader(uriBuilder, pagination, "resources");
 
 		// then
-		assertThat(result, is("</some/url?page=2&size=5>; rel=\"last\", </some/url?page=1&size=5>; rel=\"first\", </some/url?page=1&size=5>; rel=\"prev\""));
+		assertThat(result, is("</resources?page=2&size=5>; rel=\"last\", </resources?page=1&size=5>; rel=\"first\", </resources?page=1&size=5>; rel=\"prev\""));
 	}
 
 	@Test
@@ -61,10 +61,10 @@ public class LinkHeaderDecoratorTest {
 		PaginationInformation pagination = new PaginationInformation(1, 4).withTotalCount(4);
 
 		// when
-		String result = linkHeaderDecorator.decorateLinkHeader(uriBuilder, pagination);
+		String result = linkHeaderDecorator.decorateLinkHeader(uriBuilder, pagination, "resources");
 
 		// then
-		assertThat(result, is("</some/url?page=1&size=4>; rel=\"last\", </some/url?page=1&size=4>; rel=\"first\""));
+		assertThat(result, is("</resources?page=1&size=4>; rel=\"last\", </resources?page=1&size=4>; rel=\"first\""));
 	}
 
 }
