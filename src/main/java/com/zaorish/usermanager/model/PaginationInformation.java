@@ -24,14 +24,14 @@ public class PaginationInformation {
 	}
 
 	public int getPage() {
-		return page;
+		return min(page, getNumberOfPages());
 	}
 	public void setPage(int page) {
 		this.page = max(DEFAULT_PAGE, page);
 	}
 
 	public int getSize() {
-		return size;
+		return min(size, getTotalCount());
 	}
 	public void setSize(int size) {
 		if (size == 0) {
@@ -87,8 +87,8 @@ public class PaginationInformation {
 	@Override
 	public String toString() {
 		return "PaginationInformation{" +
-				"size=" + getSize() +
-				", page=" + getPage() +
+				"size=" + size +
+				", page=" + page +
 				'}';
 	}
 

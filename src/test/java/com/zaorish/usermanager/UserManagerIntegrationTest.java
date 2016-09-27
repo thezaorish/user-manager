@@ -198,7 +198,7 @@ public class UserManagerIntegrationTest {
 				statusCode(200).
 				body("results", notNullValue()).
 				body("page", is(1)).
-				body("size", is(20)).
+				body("size", is(6)).
 				body("totalPages", is(1)).
 				body("results.nickname", hasSize(6)).
 				body("results.email", hasSize(6)).
