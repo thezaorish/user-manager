@@ -15,3 +15,5 @@ In order to run this application, [rabbit mq](https://www.rabbitmq.com/download.
 #### Quick start ####
 * execute the tests: ./gradlew clean test
 * start the application: ./gradlew bootRun (the application will start on localhost:8087, see application.properties for changing the port)
+* rest endpoints documentation: http://localhost:8087/v2/api-docs 
+* integration tests: [UserManagerIntegrationTest](https://github.com/thezaorish/user-manager/blob/master/src/test/java/com/zaorish/usermanager/UserManagerIntegrationTest.java)
